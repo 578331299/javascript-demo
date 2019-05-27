@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="jquery-2.0.0.min.js"></script>
+    <title>Document</title>
+    <p id="test">插件</p>
+</head>
+<body>
+    <div>test</div>
+</body>
+    <script>
+        // jQuery插件的开发
+        $.extend({
+            log: function(message) {
+                alert(message);
+            }
+        });
+        $.fn.pluginName = function (options) {
+            var defaults = {
+                'color': 'green',
+                'fontSize': '30px'
+            };
+            var settings = $.extend({}, defaults, options) 
+            return this.css({
+                'color': settings.color,
+                'font-size': settings.fontSize
+            });
+        };
+
+        var options = {
+            'color': 'red',
+            'fontSize': '30px'
+        }
+        // jQuery的用法
+        $(document).ready(
+            $('#test').pluginName(options),
+            $('div').pluginName(),
+            $.log('test')
+        );
+        
+        var arr = ['a', 'b', 'c', 'd', 'd', 'e'];
+        // 1.数组去重,打印出新数组
+        function testArray (arr) {
+            var newArr = []
+            arr.forEach((value, index) => {
+                if(newArr.indexOf(value) === -1) {
+                    newArr.push(value);
+                }
+            });
+            return newArr;
+        }
+        console.log(testArray(arr));
+        // 2.统计数组出现次数最多的字符，并统计其出现的次数
+        function maxCount(arr) {
+            var obj = {};
+            var maxString = '';
+            var maxCount = 0;
+            arr.forEach((value, index) => {
+                var key = value;
+                if(obj[key]) {
+                    obj[key] = obj[key] + 1;
+                } else {
+                    obj[key] = 1;
+                }
+                if (maxCount < obj[key]) {
+                    maxCount = obj[key];
+                    maxString = key;
+                }
+            });
+            console.log(obj);
+            console.log('字符串' + maxString + '出现的次数最多,出现了' + maxCount + '次');
+        }
+        maxCount(arr);
+        //  3每隔10秒打印1个数字。从0开始，打印到10---闭包
+        function printNumber() {
+            for (let index = 0; index <= 10; index++) {
+                (function(i) {
+                    setTimeout(function () {
+                        console.log(i);
+                    },1000)
+                })(index)
+            } 
+        }
+        printNumber();
+
+        //4.在数组的开头添加一个元素，不能直接改变数组，返回新的数组
+        function prepend(arr) {
+            var a = arr.slice(0); //不改变旧数组
+            a.unshift('test');
+            var arrb = [1,2,3,4];
+            var arrc = arr.concat(arrb);//不改变旧数组
+            console.log('a数组' + a);
+            console.log('arrc数组' + arrc);
+            console.log('arr数组' + arr);
+        }
+
+        prepend(arr);
+        // 5.创建对象
+        // ---工厂模式
+        function creatStudent(name, age){
+            var obj = new Object();
+            obj.name = name;
+            obj.age = age;
+            obj.sayName = function () {
+                console.log(this.name);
+            }
+            return obj;
+        }
+        var liming = creatStudent('liming', 28);
+        console.log(liming.age);
+        liming.sayName();
+        //--构造函数
+        function Student(name, age) {
+            this.name = name;
+            this.age = age;
+            this.sayHello = function() {
+                console.log(this.age);
+            }
+        }
+
+        var zhangsan = new Student('zhangsan', 30);
+        //--原型模式
+        function Student_1 () {
+            Student_1.prototype.name = 'lisi';
+            Student_1.prototype.age = 36;
+            Student_1.prototype.sayHello = function() {
+                console.log(this.name);
+            }
+        }
+        var lisi = new Student_1();
+        lisi.name = 'sherry';
+        lisi.sayHello();
+        // 6.手写一个promise
+        var p = new Promise(function(resolve, reject) {
+            if(true) {
+                resolve('success');
+            } else {
+                reject('failed')
+            }
+
+        })
+        p.then(function(value) {
+            console.log(value);
+
+        },function(error) {
+            console.log(error);
+        });
+        // 7.js中的遍历
+        // for in 为对象遍历设计的
+        var arr = ['sherry', 2, 3, 4];
+        const obj = {
+            id:1,
+            name:'zhangsan',
+            age:18
+        }
+        for (var item in obj) {
+            console.log(obj[item]);
+        }
+        // ES5中的遍历
+        arr.forEach((value,index) => {
+            console.log(value);
+        })
+        // ES6中的遍历 用for-of遍历类数组对象
+        var objArr = [{id: 1},{name: 'lisa'}];
+        
+        for (var key of objArr) {
+            console.log(key);
+        }
+
+        var arr = [1, 3, 5, 7, 9];
+        var result = arr.reduce(function (preValue, curValue, index, arr) {
+            return preValue + curValue;
+        });
+        console.log(result);
+        //8.检测变量是个String类型
+        function judgeString(str) {
+            return Object.prototype.toString.call(str) === "[object String]" ? true : false;
+            // return typeof(str) === "string" ? true : false;
+            // return str.constructor === String ? true: false;
+        }
+        var newstring = judgeString("abc");
+        console.log(newstring);
+        // 9.去除字符串空格
+        var strspace = " a b c ";
+        console.log(strspace.trim());// 无法去除中间空格
+        var str2 = strspace.replace(/\s*/g,"");
+        console.log(str2);
+        // 10.如何获取浏览器URL中查询字符串中的参数
+        function formatUrl() {
+            var url = "http://www.runoob.com/jquery/misc-trim.html?channelid=12333&name=xiaoming&age=23";
+            var sHref = url.split("?"); 
+            var arr = sHref[1].split('&');
+            var obj = {};
+            for(var i = 0;i< arr.length;i++){
+                var arg = arr[i].split('=');
+                obj[arg[0]] = arg[1];
+            } 
+            return obj;
+        }
+        var href = formatUrl();
+        console.log(href);
+        
+    </script>
+</html>
