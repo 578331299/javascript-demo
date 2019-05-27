@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="jquery-2.0.0.min.js"></script>
+    <script src="tab.js"></script>
+    <title>Document</title>
+</head>
+<body>
+
+<div class="tab" data-config='{"triggerType": "mouseover",
+                                "effect": "default",
+                                "invoke": 1,
+                                "auto": false}'>
+    123
+</div>
+    
+</body>
+<script>
+    $(function() {
+        var tab1 = new Tab($('.tab')[0]);
+    })
+</script>
+</html>
