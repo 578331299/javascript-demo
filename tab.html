@@ -6,21 +6,75 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <script src="jquery-2.0.0.min.js"></script>
     <script src="tab.js"></script>
-    <title>Document</title>
+    <title>tab组件</title>
+    <style>
+        ul {
+            list-style: none;
+        }
+        .tab-nav {
+            height:20px;
+            padding: 0;
+        }
+        .tab-nav li {
+            float:left;
+            padding:5px 10px;
+            background-color: #777;
+            border: 1px solid white;
+            margin-right:10px;
+            border-radius: 5px;
+        }
+        .tab-nav li a {
+            text-decoration: none;
+            color:black
+        }
+        .tab-nav li.actived {
+            background-color:white;
+            color:#777;
+        }
+        .content-item {
+            display: none;
+        }
+        .current {
+            display: block;
+        }
+        .content-item img {
+            width:200px;
+            height:200px;
+        }
+    </style>
 </head>
 <body>
 
-<div class="tab" data-config='{"triggerType": "mouseover",
-                                "effect": "default",
-                                "invoke": 1,
-                                "auto": false}'>
-    123
+<div class="tab js-tab" data-config='{"triggerType": "click",
+                                "effect": "fade",
+                                "invoke": 2,
+                                "auto": 1000}'>
+    <ul class="tab-nav">
+        <li class="actived"><a href="javascript:void(0)">科技</a></li>
+        <li><a href="javascript:void(0)">教育</a></li>
+        <li><a href="javascript:void(0)">新闻</a></li>
+        <li><a href="javascript:void(0)">科技</a></li>
+    </ul>
+    <div class="content-wrap">
+        <div class="content-item current">
+            <img src="./image/1.jpg" alt="">
+        </div>
+        <div class="content-item">
+            <img src="./image/2.jpg" alt="">
+        </div>
+        <div class="content-item">
+            <img src="./image/3.jpg" alt="">
+        </div>
+        <div class="content-item">
+            <img src="./image/4.jpg" alt="">
+        </div>
+    </div>
 </div>
     
 </body>
 <script>
     $(function() {
-        var tab1 = new Tab($('.tab')[0]);
+        var tab1 = new Tab($('.js-tab').eq(0));
     })
 </script>
 </html>
