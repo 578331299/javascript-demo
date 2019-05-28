@@ -46,6 +46,32 @@
 <body>
 
 <div class="tab js-tab" data-config='{"triggerType": "click",
+                                "effect": "default",
+                                "invoke": 0,
+                                "auto": false}'>
+    <ul class="tab-nav">
+        <li class="actived"><a href="javascript:void(0)">科技</a></li>
+        <li><a href="javascript:void(0)">教育</a></li>
+        <li><a href="javascript:void(0)">新闻</a></li>
+        <li><a href="javascript:void(0)">科技</a></li>
+    </ul>
+    <div class="content-wrap">
+        <div class="content-item current">
+            <img src="./image/1.jpg" alt="">
+        </div>
+        <div class="content-item">
+            <img src="./image/2.jpg" alt="">
+        </div>
+        <div class="content-item">
+            <img src="./image/3.jpg" alt="">
+        </div>
+        <div class="content-item">
+            <img src="./image/4.jpg" alt="">
+        </div>
+    </div>
+</div>
+
+<div class="tab js-tab" data-config='{"triggerType": "click",
                                 "effect": "fade",
                                 "invoke": 2,
                                 "auto": 1000}'>
@@ -74,7 +100,11 @@
 </body>
 <script>
     $(function() {
-        var tab1 = new Tab($('.js-tab').eq(0));
+        // var tab1 = new Tab($('.js-tab').eq(0));
+        //console.log(Object.getPrototypeOf(tab1));
+        //Tab.init($('.js-tab'));
+        //扩展属性的写法
+        $.tab($('.js-tab'))
     })
 </script>
 </html>

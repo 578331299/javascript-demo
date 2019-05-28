@@ -32,7 +32,7 @@
         if (this.config.invoke) {
             self.invoke(this.tabItems.eq(this.config.invoke));
         }
-
+        
     }
     Tab.prototype = {
         // 获取参数
@@ -62,7 +62,7 @@
             
         },
         // 自动播放
-        autoPlay () {
+        autoPlay: function(){
             // 注意this的用法
             var self = this;
             tabItems = this.tabItems;
@@ -86,6 +86,19 @@
             },config.auto)
         }
     }
-
+    // Tab.init = function(tabs) {
+    //     console.log(tabs);
+    //     var self = this;
+    //     tabs.each(function() {
+    //         new self($(this));
+    //     })
+    // }
     window.Tab =Tab;
+    $.extend({
+        tab: function(tabs) {
+            tabs.each(function() {
+                new Tab($(this))
+            })
+        }
+    })
 })(jQuery)
