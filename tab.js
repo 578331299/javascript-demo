@@ -18,9 +18,10 @@
         this.tabItems = this.tab.find("ul.tab-nav li");
         this.contentItem = this.tab.find("div.content-wrap div.content-item");
         // 绑定事件
-        console.log(this.config);
         this.tabItems.bind(this.config.triggerType, function() {
             self.invoke($(this));
+            console.log($(this));
+            console.log(this)
         })
         // 自动播放
         if (this.config.auto) {
@@ -46,6 +47,7 @@
         },
         // 切换标签
         invoke: function(currentTab) {
+            console.log(currentTab);
             currentTab.addClass("actived").siblings().removeClass("actived");
             var index = currentTab.index();
             var contentItem = this.contentItem;
