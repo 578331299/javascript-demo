@@ -1,5 +1,5 @@
 ## 重学前端笔记
-###1.使用语义化标签的作用：
+### 1.使用语义化标签的作用：
 - 1.即使没有css的时候，开发者也能够清晰地看出网页的结构。
 - 2.适宜机器阅读，更适合搜索引擎检索（SEO）。
 ### 2.表示与主文相关的图像：
@@ -7,7 +7,7 @@
 	  <img src="https://.....440px-NeXTcube_first_webserver.JPG"/>
 	  <figcaption>The NeXT Computer used by Tim Berners-Lee at CERN.</figcaption>
 	</fingure>
-###4.关于js中的类型：
+### 4.关于js中的类型：
   - Undefined---表示未定义，是一个变量，而不是一个关键字，用void 0获取Undefined的值
   - null----表示定义了，但是是空
   - Bolean----true/false
